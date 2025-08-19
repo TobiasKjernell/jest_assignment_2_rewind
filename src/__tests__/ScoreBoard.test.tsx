@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import ScoreBoard from '../components/ScoreBoard';
+import ScoreBoard from '../components/ScoreBoard/index.tsx';
 
 describe('ScoreBoard', () => {
   it('renders score and answered/total text', () => {
