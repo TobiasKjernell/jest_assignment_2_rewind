@@ -1,3 +1,5 @@
+   From LandingScreen.test.tsx gets passed when it should be failed. missing content.
+ 
   it('removes landing screen after clicking start', () => {
     // We simulate what would happen if the parent removed LandingScreen
     const { rerender } = render(<LandingScreen onStart={() => rerender(<p>Quiz started</p>)} />);
@@ -8,4 +10,20 @@
     expect(screen.getByText('Quiz started')).toBeInTheDocument();
   });
 
-  From LandingScreen.test.tsx gets passed when it should be failed. missing content.
+
+-------------
+
+
+  From ResultScreen.test.tsx same as above.
+
+    it('returns to landing screen when play again clicked', () => {
+    const { rerender } = render(
+      <ResultScreen score={7} total={10} onPlayAgain={() => rerender(<h2>Welcome to QuickQuiz</h2>)} />
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /play-again/i }));
+
+    expect(screen.getByRole('heading', { name: /welcome to quickquiz/i })).toBeInTheDocument();
+  });
+
+
