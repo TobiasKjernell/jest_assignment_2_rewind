@@ -25,4 +25,4 @@ describe('LandingScreen', () => {
       screen.getByText('Short multiple-choice quiz to test your knowledge.')
     ).toBeInTheDocument();
   });
-});
+}); 

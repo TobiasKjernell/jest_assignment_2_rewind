@@ -1,0 +1,11 @@
+  it('removes landing screen after clicking start', () => {
+    // We simulate what would happen if the parent removed LandingScreen
+    const { rerender } = render(<LandingScreen onStart={() => rerender(<p>Quiz started</p>)} />);
+    fireEvent.click(screen.getByRole('button', { name: /start-quiz/i }));
+
+    // Landing screen heading disappears, replaced by quiz content
+    expect(screen.queryByRole('heading', { name: /welcome to quickquiz/i })).not.toBeInTheDocument();
+    expect(screen.getByText('Quiz started')).toBeInTheDocument();
+  });
+
+  From LandingScreen.test.tsx gets passed when it should be failed. missing content.
