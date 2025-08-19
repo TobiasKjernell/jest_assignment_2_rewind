@@ -23,7 +23,7 @@ const QuestionCard = ({ question, onSubmit }: IQuestionCard) => {
             <fieldset>
                 {question.options && question.options.map((item, index) =>
                     <div key={index}>
-                        <input key={index} name="question" type="radio" value={item} id={item} onClick={() => setGotAnswer(index)} />
+                        <input key={index} name="question" type="radio" value={item} id={item} checked={gotAnswer === index} onChange={() => setGotAnswer(index)} />
                         <label htmlFor={item} aria-label={`answer-${index}`}>{item}</label>
                     </div>
                 )}

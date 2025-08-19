@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LandingScreen from "./components/LandingScreen";
 import QuestionCard from "./components/QuestionCard";
 import ScoreBoard from "./components/ScoreBoard";
 import ResultScreen from "./components/ResultScreen";
+import ThemeToggle from "./components/ThemeToggle";
+import { questionsSet } from "./data/questions";
 
 
 export type Question = {
@@ -12,20 +14,11 @@ export type Question = {
   correctIndex: number,
 }
 
-
-const sampleQuestion: Question = {
-  id: 'q1',
-  question: 'What is 2 + 2?',
-  options: ['3', '4', '5'],
-  correctIndex: 1,
-};
-
-const questionsSet: Question[] = [sampleQuestion, sampleQuestion, sampleQuestion, sampleQuestion, sampleQuestion]
-
 export default function App() {
   const [gameIsRunning, setGameIsRunning] = useState<boolean>(false);
   const [step, setStep] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
+  const [theme, setTheme] = useState<string>('light')
 
   const handleGameIsRunning = () => setGameIsRunning(!gameIsRunning);
   const handlePlayAgain = () => {
@@ -40,8 +33,13 @@ export default function App() {
     setStep(step + 1);
   }
 
+    useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
   return (
     <div className="flex flex-col items-center">
+      <ThemeToggle theme={theme} onToggle={() => setTheme((currentTheme) => currentTheme === 'light' ? 'dark' : 'light')} />
       {!gameIsRunning && <LandingScreen onStart={handleGameIsRunning} />}
       {questionsSet.length > step && gameIsRunning &&
         <>
