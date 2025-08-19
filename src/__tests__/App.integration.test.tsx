@@ -3,11 +3,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 
 describe('QuickQuiz Integration Tests', () => {
-  beforeEach(() => {
-    render(<App />);
-  });
+
+
 
   it('1. Starts quiz from landing screen', () => {
+    render(<App />);
     // Landing screen is visible
     expect(screen.getByRole('heading', { name: /welcome to quickquiz/i })).toBeInTheDocument();
     const startButton = screen.getByRole('button', { name: /start-quiz/i });
@@ -19,6 +19,7 @@ describe('QuickQuiz Integration Tests', () => {
   });
 
   it('2. Answers a question and updates scoreboard', () => {
+    render(<App />);
     fireEvent.click(screen.getByRole('button', { name: /start-quiz/i }));
 
     // Select first option (answer-0) and submit
@@ -34,6 +35,7 @@ describe('QuickQuiz Integration Tests', () => {
   });
 
   it('3. Completes quiz and shows result screen', () => {
+    render(<App />);
     fireEvent.click(screen.getByRole('button', { name: /start-quiz/i }));
 
     // Answer all questions (choose first option)
@@ -48,6 +50,7 @@ describe('QuickQuiz Integration Tests', () => {
   });
 
   it('4. Play again resets quiz', () => {
+    render(<App />);
     fireEvent.click(screen.getByRole('button', { name: /start-quiz/i }));
 
     // Complete quiz quickly
@@ -65,6 +68,7 @@ describe('QuickQuiz Integration Tests', () => {
   });
 
   it('5. Toggles theme and persists across quiz', () => {
+    render(<App />);
     // Initial theme button label is 'Switch to dark'
     const toggle = screen.getByRole('button', { name: /toggle-theme/i });
     expect(toggle).toHaveTextContent(/Switch to dark/i);

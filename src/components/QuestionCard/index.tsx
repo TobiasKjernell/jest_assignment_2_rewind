@@ -1,31 +1,34 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState } from "react";
 import type { Question } from "../../App";
 
 interface IQuestionCard {
     question: Question,
-    onSubmit: () => void
+    onSubmit: (selected: number) => void
 }
 
 const QuestionCard = ({ question, onSubmit }: IQuestionCard) => {
-    const [gotAnswer, setGotAnswer] = useState<boolean>(false);
+    const [gotAnswer, setGotAnswer] = useState<number | null>(null);
 
-    const handleOnSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        onSubmit();
-    }
+    useEffect(() => {
+        setGotAnswer(null);
+    }, [question])
 
     return (
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={(e) => {
+            e.preventDefault();
+            if (gotAnswer !== null)
+                onSubmit(gotAnswer)
+        }}>
             <h2>{question.question}</h2>
             <fieldset>
                 {question.options && question.options.map((item, index) =>
                     <div key={index}>
-                        <input key={index} name="question" type="radio" value={item} id={item} onClick={() => setGotAnswer(true)}  />
-                        <label htmlFor={item}>{item}</label>
+                        <input key={index} name="question" type="radio" value={item} id={item} onClick={() => setGotAnswer(index)} />
+                        <label htmlFor={item} aria-label={`answer-${index}`}>{item}</label>
                     </div>
                 )}
             </fieldset>
-            <button disabled={!gotAnswer}>Submit-answer</button>
+            <button type="submit" disabled={gotAnswer === null}>Submit-answer</button>
         </form>
     )
 }
