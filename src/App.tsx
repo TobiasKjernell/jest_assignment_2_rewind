@@ -1,3 +1,4 @@
+import styles from './App.module.css';
 import { useEffect, useState } from "react";
 import LandingScreen from "./components/LandingScreen";
 import QuestionCard from "./components/QuestionCard";
@@ -33,13 +34,18 @@ export default function App() {
     setStep(step + 1);
   }
 
-    useEffect(() => {
+  useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
   return (
-    <div className="flex flex-col items-center">
-      <ThemeToggle theme={theme} onToggle={() => setTheme((currentTheme) => currentTheme === 'light' ? 'dark' : 'light')} />
+    <div className={styles.app}>
+      
+      <header className={styles.title}>
+        <h1 className={styles.titleText}>QuickQuiz</h1>
+        <ThemeToggle theme={theme} onToggle={() => setTheme((currentTheme) => currentTheme === 'light' ? 'dark' : 'light')} />
+      </header>
+
       {!gameIsRunning && <LandingScreen onStart={handleGameIsRunning} />}
       {questionsSet.length > step && gameIsRunning &&
         <>

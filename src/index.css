@@ -1,6 +1,12 @@
 :root {
   background-color: #ffffff;
   color: #0f0101;
+  display: flex;
+  justify-content: center;
+
+  button {
+    cursor: pointer;
+  }
 }
 
 [data-theme="dark"] {

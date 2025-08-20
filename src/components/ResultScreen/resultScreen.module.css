@@ -1,0 +1,19 @@
+    .resultCard {
+        background-color: #f7f7f7;
+        padding: 0 20px;
+        padding-top: 35px;
+        text-align: center;
+    }
+
+    .score {
+        font-weight: bold;
+    }
+
+    [data-theme="dark"] {
+        background-color: #010913;
+        color: #eee;
+
+        .resultCard {
+            background-color: #010913;
+        }
+    }

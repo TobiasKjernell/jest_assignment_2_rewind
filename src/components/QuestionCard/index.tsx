@@ -1,3 +1,4 @@
+import styles from './questionCard.module.css'
 import { useEffect, useState } from "react";
 import type { Question } from "../../App";
 
@@ -14,13 +15,13 @@ const QuestionCard = ({ question, onSubmit }: IQuestionCard) => {
     }, [question])
 
     return (
-        <form onSubmit={(e) => {
+        <form className={styles.card} onSubmit={(e) => {
             e.preventDefault();
             if (gotAnswer !== null)
                 onSubmit(gotAnswer)
         }}>
             <h2>{question.question}</h2>
-            <fieldset>
+            <fieldset >
                 {question.options && question.options.map((item, index) =>
                     <div key={index}>
                         <input key={index} name="question" type="radio" value={item} id={item} checked={gotAnswer === index} onChange={() => setGotAnswer(index)} />
@@ -28,7 +29,7 @@ const QuestionCard = ({ question, onSubmit }: IQuestionCard) => {
                     </div>
                 )}
             </fieldset>
-            <button type="submit" disabled={gotAnswer === null}>Submit-answer</button>
+            <button aria-label="submit-answer" type="submit" disabled={gotAnswer === null}>Submit Answer</button>
         </form>
     )
 }

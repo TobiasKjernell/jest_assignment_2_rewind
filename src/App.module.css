@@ -1,0 +1,14 @@
+.app {
+    width: 600px;
+    font-family: sans-serif;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .titleText {
+        font-weight: bold;
+    }
+}

@@ -9,7 +9,7 @@ interface IScoreBoard {
 const ScoreBoard = ({ score, answered, total }: IScoreBoard) => {
     return (
         <div role='status' className={styles.flex}>
-            <span>Score: {score}</span>
+            <span>Score: <span className={styles.score}>{score}</span></span>
             <span>Answered: {answered}/{total}</span>
         </div>
     )
