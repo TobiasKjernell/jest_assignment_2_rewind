@@ -1,10 +1,25 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import App from '../App';
 
+
+describe('unit test', () => {
+
+  test("should render header with a h1 header element with text 'QuickQuiz'", () => {
+    render(<App />)
+
+    const headerEl = screen.getByRole('banner');
+    const titleEl = within(headerEl).getByRole('heading', { level: 1, name: /quickquiz/i })
+
+    expect(headerEl).toBeInTheDocument();
+    expect(titleEl).toBeInTheDocument();
+    expect(titleEl.textContent).toBe("QuickQuiz");
+
+  })
+
+})
+
 describe('QuickQuiz Integration Tests', () => {
-
-
 
   it('1. Starts quiz from landing screen', () => {
     render(<App />);

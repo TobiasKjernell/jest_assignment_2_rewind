@@ -25,5 +25,12 @@
 
     expect(screen.getByRole('heading', { name: /welcome to quickquiz/i })).toBeInTheDocument();
   });
+  
 
+-------------
+
+
+they way unit test elements were selected/query should be the same in intergration tests from parents test suits.
+got abit confusing when selecting new tags/custom aria labels when it's not in the unit test.
+Some very important as header/h1 introduction text were not tested, i randomly noticed them in screenshot and added them to test.
 
