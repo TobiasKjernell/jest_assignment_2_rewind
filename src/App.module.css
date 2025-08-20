@@ -1,14 +1,24 @@
 .app {
     width: 600px;
     font-family: sans-serif;
+
+    @media screen and (max-width:600px) {
+        width: auto;
+    }
 }
 
 .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
 
     .titleText {
         font-weight: bold;
+    }
+
+    @media screen and (max-width:600px) {
+        flex-direction: column-reverse;
+        
     }
 }
